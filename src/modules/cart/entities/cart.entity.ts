@@ -11,10 +11,6 @@ export class Cart {
     })
     productId: number;
 
-    @Column({
-        name: 'user_id'
-    })
-    userId: number;
 
     @Column({
         name: 'quantity'
@@ -25,5 +21,8 @@ export class Cart {
         name: 'amount'
     })
     amount: number;
+
+    @ManyToOne(()=> User, (user) => user.cart) 
+    user: User; 
  
 }

@@ -33,14 +33,9 @@ async create(createUserDto: CreateUserDto): Promise<User> {
     return this.repo.find({ where: { userName } });
   }
 
-  // findOneById(id: number): Promise<User> {
-
-  //   if(!id)
-  //   { 
-  //       return null;
-  //   }  
-  //   return this.repo.findOneBy({ id });
-  // }
+  findOneById(userId:number) {
+   return this.repo.findOne({where:{userId} , relations:['cart']}  )
+  }
 
   findOne(userName: string): Promise<User> {
     if (!userName) {
@@ -69,5 +64,7 @@ async create(createUserDto: CreateUserDto): Promise<User> {
       }
       return this.repo.remove(user);
   }
+
+  
 }
 

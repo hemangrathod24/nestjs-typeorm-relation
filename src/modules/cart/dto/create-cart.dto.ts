@@ -6,12 +6,11 @@ export class CreateCartDto {
     productId: number;
 
     @IsNumber()
-    userId: number;
-
-    @IsNumber()
     quantity: number;
 
     @IsNumber()
     amount: number;
 
+    @IsNumber()
+    userId: number;
 }

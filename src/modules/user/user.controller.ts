@@ -39,6 +39,12 @@ export class UserController {
       return this.userService.remove(userName);
       
   }
+
+
+  @Get('get/:id')
+  findById(@Param('id')id:number){
+    return this.userService.findOneById(id)
+  }
 }
 
 
