@@ -28,7 +28,7 @@ export class CartService {
 
     const newCart = await this.repo.create(createCartDto);
     if(!newCart){
-      throw new console.error('Ohh, Product could not be created');
+      throw new console.error('Ohh, Cart could not be created');
     }
     await this.repo.save(newCart);
 
