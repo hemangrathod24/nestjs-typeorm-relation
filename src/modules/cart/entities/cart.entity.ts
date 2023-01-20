@@ -6,10 +6,16 @@ import { User } from "src/modules/user/entities/user.entity";
 @Entity()
 export class Cart {
 
-    @PrimaryColumn({
+    @PrimaryGeneratedColumn({
+        name: 'cart_id'
+    })
+    cartId: number;
+
+
+    @Column({
         name: 'product_id'
     })
-    productId: number;
+    productId: number;      
 
 
     @Column({
@@ -22,7 +28,11 @@ export class Cart {
     })
     amount: number;
 
-    @ManyToOne(()=> User, (user) => user.cart) 
+    // @Column()
+    // userId: number;
+
+    @ManyToOne(()=> User, (user) => user.cart)
     user: User; 
  
+    
 }

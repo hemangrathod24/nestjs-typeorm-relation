@@ -20,6 +20,14 @@ export class CartController {
     const user = await  this.userService.findOneById(createCartDto.userId)
 
     if(user){
+      // const tempCart = {
+      //   cartId : +createCartDto.userId,
+      //   userId: createCartDto.userId,
+      //   amount: createCartDto.amount,
+      //   productId: createCartDto.productId,
+      //   quantity: createCartDto.quantity
+      // }
+
 
       return await this.cartService.create(createCartDto , user ) ;
     }

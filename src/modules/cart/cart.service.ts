@@ -19,12 +19,27 @@ export class CartService {
   async create(createCartDto: CreateCartDto , user: User)  {
 
 
-    const newProduct = await this.repo.save({productId:createCartDto.productId })
-    user.cart = [...user.cart, newProduct]
+    // const newProduct = await this.repo.save({productId:createCartDto.productId })
+    // user.cart = [...user.cart, newProduct]
     
     
-    await this.userrepo.save(user)
-    return newProduct;
+    // await this.userrepo.save(user)
+    // return newProduct;
+
+    const newCart = await this.repo.create(createCartDto);
+    if(!newCart){
+      throw new console.error('Ohh, Product could not be created');
+    }
+    await this.repo.save(newCart);
+
+    user.cart = [...user.cart , newCart];
+    
+   await this.userrepo.save(user);
+
+   console.log(user);
+   
+    return newCart;
+
 
   }
 
@@ -53,4 +68,11 @@ export class CartService {
     return this.repo.remove(pro);
   }
 
+  // async findCheck(userId: number){
+  //   const pro = await this.repo.findOneBy({userId: userId})
+  //   if(!pro){
+  //     throw new NotFoundException('product Not found');
+  //   }
+  //   return pro
+  // }
 }
